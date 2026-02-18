@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior:smooth;
+}
+
+/* ===== Background ===== */
+body{
+    background: linear-gradient(135deg,#020024,#090979,#00d4ff);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Neon circles */
+.circle{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    z-index:-1;
+}
+
+.c1{
+    width:300px;
+    height:300px;
+    background:#00f2fe;
+    top:50px;
+    left:50px;
+}
+
+.c2{
+    width:250px;
+    height:250px;
+    background:#ff00ff;
+    bottom:50px;
+    right:80px;
+}
+
+/* ===== Navbar ===== */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    padding:15px 40px;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter: blur(8px);
+    display:flex;
+    justify-content:space-between;
+    z-index:1000;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:20px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#00f2fe;
+}
+
+/* ===== Sections ===== */
+section{
+    padding:100px 40px;
+    min-height:100vh;
+}
+
+/* ===== Home ===== */
+.home{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.home img{
+    width:250px;
+    border-radius:50%;
+    border:4px solid #00f2fe;
+    box-shadow:0 0 20px #00f2fe;
+}
+
+.home-text{
+    max-width:500px;
+}
+
+.home-text h1{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.highlight{
+    color:#00f2fe;
+}
+
+/* ===== Cards ===== */
+.card{
+    background:rgba(255,255,255,0.1);
+    padding:20px;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
+    margin-top:20px;
+}
+
+/* ===== Skills ===== */
+.skills span{
+    display:inline-block;
+    margin:8px;
+    padding:8px 15px;
+    border-radius:20px;
+    background:#00f2fe;
+    color:black;
+    font-weight:bold;
+}
+
+/* ===== Projects ===== */
+.project{
+    margin-top:20px;
+}
+
+/* ===== Footer ===== */
+footer{
+    text-align:center;
+    padding:20px;
+    background:rgba(0,0,0,0.6);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .home{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Neon Background -->
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+
+<!-- ===== Navbar ===== -->
+<nav>
+    <h2>MyPortfolio</h2>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+    </ul>
+</nav>
+
+<!-- ===== Home Section ===== -->
+<section id="home" class="home">
+
+    <img src="https://via.placeholder.com/250" alt="profile">
+
+    <div class="home-text">
+        <h1>Hello, I'm <span class="highlight">Web Developer</span></h1>
+        <p>I create modern, responsive, and visually appealing websites using HTML, CSS, and JavaScript.</p>
+
+        <div class="card skills">
+            <h3>Skills</h3>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Responsive Design</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===== About Section ===== -->
+<section id="about">
+    <h2>About Me</h2>
+
+    <div class="card">
+        <p>
+            I am a passionate web developer who loves building creative and user-friendly web applications. 
+            I enjoy learning new technologies and improving my design and development skills.
+        </p>
+
+        <h3>Education</h3>
+        <p>Bachelor Degree in Computer Science</p>
+
+        <h3>Experience</h3>
+        <p>Worked on multiple academic and personal web development projects including landing pages and web apps.</p>
+    </div>
+</section>
+
+<!-- ===== Projects Section ===== -->
+<section id="projects">
+    <h2>Projects</h2>
+
+    <div class="card project">
+        <h3>Landing Page Website</h3>
+        <p>Responsive landing page with fixed navigation and modern UI design.</p>
+    </div>
+
+    <div class="card project">
+        <h3>Stopwatch Web App</h3>
+        <p>Interactive stopwatch with lap time tracking using JavaScript.</p>
+    </div>
+
+    <div class="card project">
+        <h3>Tic Tac Toe Game</h3>
+        <p>Game application with AI opponent and responsive layout.</p>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+    <p>© 2026 My Portfolio | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

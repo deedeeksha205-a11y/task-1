@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather App</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#1e3c72,#2a5298);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+
+/* Gradient Shapes */
+.square{
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:linear-gradient(45deg,#00f2fe,#4facfe);
+    opacity:0.3;
+    transform:rotate(45deg);
+}
+
+.s1{ top:50px; left:50px; }
+.s2{ bottom:60px; right:70px; }
+
+.circle{
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:linear-gradient(45deg,#00f2fe,#4facfe);
+    opacity:0.3;
+}
+
+.c1{ top:300px; left:80px; }
+.c2{ bottom:150px; right:250px; }
+
+/* Card */
+.container{
+    background:rgba(255,255,255,0.15);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    width:320px;
+    text-align:center;
+    z-index:10;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    margin-top:10px;
+    outline:none;
+}
+
+button{
+    margin-top:10px;
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    background:#00f2fe;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.weather-info{
+    margin-top:20px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="square s1"></div>
+<div class="square s2"></div>
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+
+<div class="container">
+    <h2>Weather App</h2>
+
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <button onclick="getWeatherByCity()">Search</button>
+    <button onclick="getLocationWeather()">Use My Location</button>
+
+    <div class="weather-info" id="weatherResult"></div>
+</div>
+
+<script>
+
+// ===== Weather by City =====
+async function getWeatherByCity(){
+    let city = document.getElementById("cityInput").value;
+
+    if(!city) return;
+
+    let url = `https://wttr.in/${city}?format=j1`;
+
+    let response = await fetch(url);
+    let data = await response.json();
+
+    displayWeather(data, city);
+}
+
+// ===== Weather by GPS =====
+function getLocationWeather(){
+    navigator.geolocation.getCurrentPosition(async position => {
+
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+
+        let url = `https://wttr.in/${lat},${lon}?format=j1`;
+
+        let response = await fetch(url);
+        let data = await response.json();
+
+        displayWeather(data, "Your Location");
+
+    });
+}
+
+// ===== Display Weather =====
+function displayWeather(data, locationName){
+
+    let current = data.current_condition[0];
+
+    document.getElementById("weatherResult").innerHTML = `
+        <h3>${locationName}</h3>
+        <p>🌡 Temperature: ${current.temp_C}°C</p>
+        <p>☁ Condition: ${current.weatherDesc[0].value}</p>
+        <p>💧 Humidity: ${current.humidity}%</p>
+        <p>🌬 Wind: ${current.windspeedKmph} km/h</p>
+    `;
+}
+
+</script>
+
+</body>
+</html>
