@@ -1,0 +1,107 @@
+ describe('XPath Locator Test', () => {
+    it('should locate element using XPath', async () => {
+        await browser.url('https://the-internet.herokuapp.com/login');
+
+        const username = await $('//input[@id="username"]');
+        await username.setValue('tomsmith');
+
+        const password = await $('//input[@id="password"]');
+        await password.setValue('SuperSecretPassword!');
+
+        const loginBtn = await $('//button[@type="submit"]');
+        await loginBtn.click();
+    });
+});
+
+describe('Google Search Test', () => { 
+it('should open google and verify title', async () => { 
+await browser.url('https://www.google.com'); 
+const title = await browser.getTitle(); 
+console.log("Page Title is: " + title); 
+}); 
+});
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Task Manager </title>
+        <!-- jQuery CDN -->
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <h2> Task Manager </h2>
+        <input type="text" id="taskInput" placeholder="Enter a task">
+        <button id="addTask">Add Task</button>
+
+        <h3>Tasks:</h3>
+        <ul id="tasklist"></ul>
+
+
+        <script src="script.js"></script>
+    </body>
+</html>
+
+
+
+
+
+create script.js
+
+$(document).ready(function(){
+    // Addtask
+    $("#addTask").click(function(){
+        let task = $("#taskInput").val();
+        if(task){
+            $("#tasklist").append("<li>" + task + " <button class='remove'>Remove</button></li>");
+            $("#taskInput").val("");
+        }
+    });
+
+    // Remove task
+    $(document).on("click", ".remove", function(){
+        $(this).parent().remove();
+    });
+
+    // Retrieve all tasks
+    function getTasks(){
+        let tasks = [];
+        $("#tasklist li").each(function(){
+            tasks.push($(this).text().replace(" Remove", ""));
+        });
+        return tasks;
+    }
+
+    // Log tasks whenever list changes
+    $("#tasklist").on("DOMSubtreeModified", function(){
+        console.log("current Tasks:", getTasks());
+    });
+});
+
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+
+    <artifactId>MyProject</artifactId>
+
+    <version>1.0</version>
+
+</project>
+
+
+package com.example;
+
+public class app{
+       public static void main(string[] args) {
+              System.out.println("Hello Maven!");
+       }
+}
